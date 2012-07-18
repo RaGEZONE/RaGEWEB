@@ -1,11 +1,12 @@
 <?php
 	/*
-		RaGEWEB :: Web Application used to emulator the current build of Habbo.com
+		RaGEWEB :: Web Application used to emulate the current build of Habbo.com
 		Developers
 			- Cobe 'Makarov' Johnson :: Project Team Leader, designed database, folder structure, reviews code before github push, etc.
 			- Ashley 'nobrain' Davidson :: Writes code, rips public files.
 			- Leon Hartley :: Writes code, designs layout.
-
+			- Oleg :: Checks for exploits, and bugs within the code
+			
 		Project protected under the DBAD License
 
 		DBAD Information
