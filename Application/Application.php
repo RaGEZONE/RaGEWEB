@@ -5,7 +5,6 @@
 			- Cobe 'Makarov' Johnson :: Project Team Leader, designed database, folder structure, reviews code before github push, etc.
 			- Ashley 'nobrain' Davidson :: Writes code, rips public files.
 			- Leon Hartley :: Writes code, designs layout.
-			- Oleg :: Checks for exploits, and bugs within the code
 			
 		Project protected under the DBAD License
 
@@ -18,7 +17,7 @@
 			- Started :: July 18, 2012
 			- Languages Used :: PHP, Javascript, CSS
 			- Code Pattern :: MVC
-			- Extensions Used :: APC
+			- Extensions Used :: memcache
 
 		File Information
 			- Name :: Application
@@ -34,17 +33,17 @@
 
 		public function __construct(&$Application)
 		{
-			$Application->Test = 5;
-
 			$this->ReadLibrary();
 
 			$Application->Common = new Common();
 
-			$this->ReadConfig();
+			$ConfigClass = new stdClass;
 
-			$Application->Config = $this->Config;
+			$this->ReadConfig($ConfigClass);
 
-			$this->StartModel();
+			$Application->Config = $ConfigClass;
+
+			$Application->Database = $this->StartDatabase($Application->Config);
 
 			$Application->Router = new Router();
 
@@ -69,35 +68,49 @@
 			}
 		}
 
-		private function ReadConfig()
+		private function ReadConfig(&$ConfigClass)
 		{
 			foreach(glob('Config/*.php') as $File)
 			{
 				include $File;
 			}
 
-			$this->Config = $Config;
+			foreach($Config as $Key => $Value)
+			{
+				$ConfigClass->$Key = null;
+
+				foreach($Config[$Key] as $LittleKey => $LittleValue)
+				{
+					$ConfigClass->$Key->$LittleKey = $LittleValue;
+				}
+			}
 		}
 
-		private function StartModel()
+		private function StartDatabase($ConfigClass)
 		{
+			
 			$ModelTypes = new ModelType();
 
-			if (!in_array($this->Config['Database']['Type'], $ModelTypes->AllowedModelTypes))
+			if (!in_array($ConfigClass->Database->Type, $ModelTypes->AllowedModelTypes))
 			{
-				die($this->Config['Database']['Type'] . ' does not exist in RaGEWEB. If you have coded ' . $this->Config['Database']['Type'] . ', please add it to the AllowedModelTypes within Application\Library\Enumerations\ModelType.php');
+				die($this->Config['Database']['Type'] . ' does not exist in RaGEWEB. If you have coded ' . $ConfigClass->Database->Type . ', please add it to the AllowedModelTypes within Application\Library\Enumerations\ModelType.php');
 			}
-/* For later date
-			if (!file_exists('Application/Models/Model_' . $this->Config['Database']['Type'] . '.php'))
+			
+			if (!file_exists('Application/Library/Database/Drivers/' . $ConfigClass->Database->Type . '.php'))
 			{
-				die('Application\Models\Model_' . $this->Config['Database']['Type'] . '.php cannot be found, where is it?!?!');
+				die('Application\Models\Model_' . $ConfigClass->Database->Type . '.php cannot be found, where is it?!?!');
 			}
-
+/*
 			if (!file_exists('Application/Models/DAO/DAO_' . $this->Config['Database']['Type'] . '.php'))
 			{
 				die('Application\Models\DAO\DAO_' . $this->Config['Database']['Type'] . '.php cannot be found, where is it?!?!');
 			}
 */
+			include('Application/Library/Database/Drivers/' . $ConfigClass->Database->Type . '.php');
+			include('Application/Library/Database/DAO/' . $ConfigClass->Database->Type . '.php');
+
+			$Name = 'Database_' . $ConfigClass->Database->Type;
+			return new $Name();
 		}
 	}
 ?>

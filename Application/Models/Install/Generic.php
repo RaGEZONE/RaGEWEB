@@ -20,10 +20,15 @@
 			- Extensions Used :: memcache
 
 		File Information
-			- Name :: 
-			- Location ::
-			- Author :: 
-			- Description ::
-			- Created :: --2012
+			- Name :: Generic
+			- Location :: Application\Models\Install\Generic.php
+			- Author :: Cobe 'Makarov' Johnson
+			- Description :: Generic methods used in the install module
+			- Created :: 8-2-2012
 	*/
+
+	function check_database_connection()
+	{
+		// Should this be in here or the label handler? hmm..
+	}
 ?>

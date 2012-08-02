@@ -39,28 +39,28 @@
 	/*
 		Where your database is located.
 	*/
-	$Config['Database']['Host'] = 'localhost';
+	$Config['Database']['Host'] = $database_host;
 
 	/*
 		The port in which your database is running on
 		* Leave this alone if you don't know what you're doing! *
 	*/
-	$Config['Database']['Port'] = 3306;
+	$Config['Database']['Port'] = $database_port;
 
 	/*
 		The name of the database you're trying to connect to!
 	*/
-	$Config['Database']['Name'] = 'rage_project';
+	$Config['Database']['Name'] = $database_name;
 
 	/*
 		A user that has permissions for the database you specified above.
 	*/
-	$Config['Database']['Username'] = 'root';
+	$Config['Database']['Username'] = $database_username;
 
 	/*
 		The password associated with the username specified above.
 	*/
-	$Config['Database']['Password'] = '';
+	$Config['Database']['Password'] = $database_password;
 
 	/*
 		What emulator are you using?!?!
@@ -71,5 +71,5 @@
 			- RaGE
 
 	*/
-	$Config['Database']['Emulator'] = 'RaGE';
+	$Config['Database']['Emulator'] = $database_emulator;
 ?>

@@ -26,4 +26,26 @@
 			- Description ::
 			- Created :: --2012
 	*/
+
+	class Error extends Controller implements iController 
+	{
+		public function __construct()
+		{
+			parent::__construct(get_class());
+		}
+
+		public function Render()
+		{
+			global $Application;
+
+			echo 'I c ur tryna view <b>' . $Application->URL . '</b>, you dirty rascal <br> <br>';
+
+			echo get_fuse()->RowCount;
+		}
+
+		public function Check()
+		{
+			// Not used all of the time :)
+		}
+	}
 ?>

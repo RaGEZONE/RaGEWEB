@@ -5,7 +5,6 @@
 			- Cobe 'Makarov' Johnson :: Project Team Leader, designed database, folder structure, reviews code before github push, etc.
 			- Ashley 'nobrain' Davidson :: Writes code, rips public files.
 			- Leon Hartley :: Writes code, designs layout.
-			- Oleg :: Checks for exploits, and bugs within the code
 			
 		Project protected under the DBAD License
 
@@ -18,17 +17,17 @@
 			- Started :: July 18, 2012
 			- Languages Used :: PHP, Javascript, CSS
 			- Code Pattern :: MVC
-			- Extensions Used :: APC
+			- Extensions Used :: memcache
 
 		File Information
-			- Name :: 
-			- Location ::
-			- Author :: 
-			- Description ::
-			- Created :: --2012
+			- Name :: Controller
+			- Location :: Application\Library\Interfaces\Controller.php
+			- Author :: Cobe 'Makarov' Johnson
+			- Description :: The interface all controllers use (except the parent.)
+			- Created :: 7-21-2012
 	*/
 
-	interface Controller
+	interface iController
 	{
 		public function Render();
 

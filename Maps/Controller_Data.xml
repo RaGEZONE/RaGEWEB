@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<data name="controller" version="1">
+	<controller> 
+
+		<id>error</id>
+
+		<view>
+
+			<id>page-error</id>
+
+			<title>Error</title>
+
+		</view>
+
+		<model>
+
+			<id>Generic</id>
+
+		</model>
+
+	</controller>
+
+	<controller> 
+
+		<id>install</id>
+
+		<view>
+
+			<id>page-intall</id>
+
+			<title>RaGEWEB Installation</title>
+
+		</view>
+
+		<model>
+
+			<id>Generic</id>
+
+		</model>
+
+	</controller>
+</data>
+
+

@@ -26,4 +26,30 @@
 			- Description ::
 			- Created :: --2012
 	*/
+
+	class Install extends Controller implements iController
+	{
+
+		public function __construct()
+		{
+			parent::__construct(get_class());
+		}
+
+		public function Render()
+		{
+			if ($this->Check())
+			{
+				die('Delete Application\Controllers\Install.php please!!');
+			}
+
+			//TODO: Start the actual view handlers that corresponds with the controller_data.xml
+
+			echo $_SERVER['SERVER_SOFTWARE'] . ' ~ coming soon.';
+		}	
+
+		public function Check()
+		{
+			return file_exists('Config/Site.php'); // If the configuration has already been written.
+		}
+	}
 ?>

@@ -20,10 +20,21 @@
 			- Extensions Used :: memcache
 
 		File Information
-			- Name :: 
-			- Location ::
-			- Author :: 
-			- Description ::
-			- Created :: --2012
+			- Name :: Generic
+			- Location :: Application\Models\Error\Generic.php
+			- Author :: Cobe 'Makarov' Johnson
+			- Description :: Generic methods used in the error page
+			- Created :: 7-29-2012
 	*/
+
+	function get_fuse()
+	{
+		global $Application;
+
+		$Application->Database->Query = "SELECT * FROM web_fuse_rights WHERE id = ?";
+
+		$Application->Database->Bind(array(1));
+
+		return $Application->Database->Execute();
+	}
 ?>

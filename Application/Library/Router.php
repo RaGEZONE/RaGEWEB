@@ -5,7 +5,6 @@
 			- Cobe 'Makarov' Johnson :: Project Team Leader, designed database, folder structure, reviews code before github push, etc.
 			- Ashley 'nobrain' Davidson :: Writes code, rips public files.
 			- Leon Hartley :: Writes code, designs layout.
-			- Oleg :: Checks for exploits, and bugs within the code
 			
 		Project protected under the DBAD License
 
@@ -18,7 +17,7 @@
 			- Started :: July 18, 2012
 			- Languages Used :: PHP, Javascript, CSS
 			- Code Pattern :: MVC
-			- Extensions Used :: APC
+			- Extensions Used :: memcache
 
 		File Information
 			- Name :: 
@@ -46,16 +45,14 @@
 		{
 			$Controller = ucfirst($_GET['request']); // Re-declaration.
 
-			if (!file_exists('Application/Controllers/' . $Controller . 'Controller.php'))
+			if (!file_exists('Application/Controllers/' . $Controller . '.php'))
 			{
 				$Controller = 'Error';
 			}
 
-			include('Application/Controllers/' . $Controller . 'Controller.php');
+			include('Application/Controllers/' . $Controller . '.php');
 
-			$Name = $Controller . 'Controller'; // Create our name RandomController
-
-			$Class = new $Name(); // Initialize the controller, $Class = new RandomController();
+			$Class = new $Controller(); // Initialize the controller, $Class = new RandomController();
 
 			$Class->Render(); // Render it's code!
 		}
